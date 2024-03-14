@@ -1,12 +1,19 @@
 # https://game.ci/docs/github/getting-started
 # unityVersion: 2021.1.18f1
-name: Actions 😎
+name: Test & Build Action
 
-on: [push, pull_request]
-
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+    
 jobs:
   build:
-    name: Build my project ✨
+    name: Test & Build
     runs-on: ubuntu-latest
     steps:
       # Checkout
