@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     name: Test project
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,6 +22,7 @@ jobs:
 
   build:
     name: Build project
+    permissions: write-all
     needs: test
     runs-on: ubuntu-latest
     steps:
