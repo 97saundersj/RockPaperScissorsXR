@@ -12,8 +12,10 @@ on:
     - main
     
 jobs:
+
   build:
     name: Test & Build
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -29,6 +31,7 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
+
 
       # Test
       - name: Run tests
