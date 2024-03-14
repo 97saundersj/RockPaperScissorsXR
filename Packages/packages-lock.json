@@ -62,7 +62,7 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
+      "url": "https://npm.developer.oculus.com"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
