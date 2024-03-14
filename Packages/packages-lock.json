@@ -1,28 +1,8 @@
 {
   "dependencies": {
-    "com.meta.xr.sdk.all": {
-      "version": "62.0.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.meta.xr.mrutilitykit": "62.0.0",
-        "com.meta.xr.sdk.audio": "60.0.0",
-        "com.meta.xr.sdk.core": "62.0.0",
-        "com.meta.xr.sdk.haptics": "62.0.0",
-        "com.meta.xr.sdk.interaction": "62.0.0",
-        "com.meta.xr.sdk.interaction.ovr": "62.0.0",
-        "com.meta.xr.sdk.platform": "62.0.0",
-        "com.meta.xr.sdk.voice": "60.0.0",
-        "com.meta.xr.sdk.voice.composer": "60.0.0",
-        "com.meta.xr.sdk.voice.dictation": "60.0.0",
-        "com.meta.xr.sdk.voice.telemetry": "60.0.0",
-        "com.meta.xr.simulator": "62.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.meta.xr.sdk.core": {
       "version": "62.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://npm.developer.oculus.com"
@@ -58,11 +38,11 @@
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.sdk.platform": {
-      "version": "60.0.0",
+      "version": "62.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.core": "60.0.0",
+        "com.meta.xr.sdk.core": "62.0.0",
         "com.unity.ugui": "1.0.0"
       },
       "url": "https://npm.developer.oculus.com"
@@ -78,7 +58,7 @@
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.simulator": {
-      "version": "60.0.0",
+      "version": "62.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
