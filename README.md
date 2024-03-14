@@ -1,3 +1,5 @@
+[![Unity Actions](https://github.com/97saundersj/RockPaperScissorsXR/actions/workflows/main.yml/badge.svg)](https://github.com/97saundersj/RockPaperScissorsXR/actions/workflows/main.yml)
+
 # RockPaperScissorsXR
 A XR Rock, Paper, Scissors game built in Unity using hand tracking and passthrough for the Quest 2 & 3 devices.
 
