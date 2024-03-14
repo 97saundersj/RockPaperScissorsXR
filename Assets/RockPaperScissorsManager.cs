@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using UnityEngine;
+using TMPro;
 
 public class RockPaperScissorsManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class RockPaperScissorsManager : MonoBehaviour
     private string gameResult = null;
     private int roundsPlayed = 0;
     private int userScore = 0;
+
+    public TMPro.TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
+    public TMPro.TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
+    public TMPro.TextMeshProUGUI gameResultText; // Assign in inspector
+    public TMPro.TextMeshProUGUI roundsPlayedText; // Assign in inspector
+    public TMPro.TextMeshProUGUI userScoreText; // Assign in inspector
 
     public void SelectPose(string selectedPose)
     {
@@ -29,6 +36,7 @@ public class RockPaperScissorsManager : MonoBehaviour
         // Determine the result of the game
         selectedComputerPose = poses[randomIndex];
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
+        gameResultText.text = "Result: " + gameResult;
         Debug.Log("Result: " + gameResult);
 
         // Update rounds played
@@ -39,6 +47,23 @@ public class RockPaperScissorsManager : MonoBehaviour
         {
             userScore++;
         }
+    }
+
+    void Update()
+    {
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (selectedPlayerPose != null)
+            selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
+        if (selectedComputerPose != null)
+            selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
+        if (gameResult != null)
+            gameResultText.text = gameResult;
+        //roundsPlayedText.text = "Rounds Played: " + roundsPlayed;
+        //userScoreText.text = "User Score: " + userScore;
     }
 
     void OnGUI()
@@ -61,7 +86,7 @@ public class RockPaperScissorsManager : MonoBehaviour
 
         GUI.Label(new Rect(10, 190, 200, 50), "AI Selected: " + selectedComputerPose);
 
-        if(gameResult != null)
+        if (gameResult != null)
         {
             GUI.Label(new Rect(10, 290, 200, 50), "Rounds Played: " + roundsPlayed);
             GUI.Label(new Rect(10, 330, 200, 50), "User Score: " + userScore);

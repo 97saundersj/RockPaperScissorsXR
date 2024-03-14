@@ -787,7 +787,12 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -802,11 +807,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 18c1539a-7f8b-44ff-8cb5-deec2070b52b
+  cloudProjectId: a8ce109a-16d4-4361-9d4f-0667a3283a86
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Sample Framework
-  organizationId: matt-oculus
+  projectName: Starter Samples
+  organizationId: hanjaba
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   playerDataPath: 

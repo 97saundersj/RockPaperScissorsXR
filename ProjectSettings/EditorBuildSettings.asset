@@ -53,10 +53,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/DemoPassthrough.unity
     guid: 2d497b475a7a15c46a62fc487a39afab
-  - enabled: 0
+  - enabled: 1
     path: Assets/PosePassthrough.unity
     guid: bea438b46ece0864390a06bbc2f39863
-  - enabled: 1
+  - enabled: 0
     path: Assets/CardPassthrough.unity
     guid: a9e5aad9bb1a5424ea39950f72b5c38a
   m_configObjects:
