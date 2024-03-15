@@ -15,7 +15,7 @@ jobs:
   build:
     name: Test & Build
     permissions: write-all
-    runs-on: windows-2022
+    runs-on: macos-latest
     steps:
       # Checkout
       - name: Checkout repository
