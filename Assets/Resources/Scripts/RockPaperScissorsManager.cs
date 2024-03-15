@@ -7,17 +7,17 @@ using TMPro;
 
 public class RockPaperScissorsManager : MonoBehaviour
 {
-    private string selectedPlayerPose = null;
+    public string selectedPlayerPose = null;
     private string selectedComputerPose = null;
     private string gameResult = null;
     private int roundsPlayed = 0;
     private int userScore = 0;
 
-    public TMPro.TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
-    public TMPro.TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
-    public TMPro.TextMeshProUGUI gameResultText; // Assign in inspector
-    public TMPro.TextMeshProUGUI roundsPlayedText; // Assign in inspector
-    public TMPro.TextMeshProUGUI userScoreText; // Assign in inspector
+    public TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
+    public TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
+    public TextMeshProUGUI gameResultText; // Assign in inspector
+    public TextMeshProUGUI roundsPlayedText; // Assign in inspector
+    public TextMeshProUGUI userScoreText; // Assign in inspector
 
     public void SelectPose(string selectedPose)
     {
@@ -36,7 +36,11 @@ public class RockPaperScissorsManager : MonoBehaviour
         // Determine the result of the game
         selectedComputerPose = poses[randomIndex];
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
-        gameResultText.text = "Result: " + gameResult;
+        if(gameResultText != null)
+        {
+            gameResultText.text = "Result: " + gameResult;
+        }
+        
         Debug.Log("Result: " + gameResult);
 
         // Update rounds played
@@ -57,7 +61,7 @@ public class RockPaperScissorsManager : MonoBehaviour
     void UpdateUI()
     {
         if (selectedPlayerPose != null)
-            selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
+            this.selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
         if (selectedComputerPose != null)
             selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
         if (gameResult != null)
