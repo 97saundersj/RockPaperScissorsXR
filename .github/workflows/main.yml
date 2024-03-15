@@ -43,7 +43,7 @@ jobs:
   build:
     name: Build
     permissions: write-all
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
       # Checkout
       - name: Checkout repository
