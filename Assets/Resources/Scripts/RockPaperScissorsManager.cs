@@ -57,7 +57,7 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (selectedPlayerPose != null)
+        if (selectedPlayerPose != null && selectedPlayerPose != null && gameResult != null)
             this.selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
         if (selectedComputerPose != null)
             selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
