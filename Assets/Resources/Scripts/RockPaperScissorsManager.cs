@@ -20,7 +20,8 @@ public class RockPaperScissorsManager : MonoBehaviour
     public TextMeshProUGUI userScoreText; // Assign in inspector
 
     public void SelectPose(string selectedPose)
-    {
+    {   
+        selectedPose = selectedPose.ToLower();
         Debug.Log("Selected: " + selectedPose);
         this.selectedPlayerPose = selectedPose;
 
@@ -28,7 +29,7 @@ public class RockPaperScissorsManager : MonoBehaviour
         int randomIndex = new System.Random().Next(0, 3);
 
         // Array of possible poses
-        string[] poses = { "Rock", "Paper", "Scissors" };
+        string[] poses = { "rock", "paper", "scissors" };
 
         // Output the randomly selected pose
         Debug.Log("Selected: " + poses[randomIndex]);
@@ -36,10 +37,6 @@ public class RockPaperScissorsManager : MonoBehaviour
         // Determine the result of the game
         selectedComputerPose = poses[randomIndex];
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
-        if(gameResultText != null)
-        {
-            gameResultText.text = "Result: " + gameResult;
-        }
         
         Debug.Log("Result: " + gameResult);
 
@@ -100,9 +97,9 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     private string DetermineWinner(string playerPose, string computerPose)
     {
-        if ((playerPose == "Rock" && computerPose == "Scissors") ||
-            (playerPose == "Paper" && computerPose == "Rock") ||
-            (playerPose == "Scissors" && computerPose == "Paper"))
+        if ((playerPose == "rock" && computerPose == "scissors") ||
+            (playerPose == "paper" && computerPose == "rock") ||
+            (playerPose == "scissors" && computerPose == "paper"))
         {
             return "Player wins!";
         }
