@@ -58,7 +58,7 @@
       "url": "https://npm.developer.oculus.com"
     },
     "com.meta.xr.simulator": {
-      "version": "62.0.0",
+      "version": "60.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
