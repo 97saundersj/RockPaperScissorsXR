@@ -7,20 +7,21 @@ using TMPro;
 
 public class RockPaperScissorsManager : MonoBehaviour
 {
-    private string selectedPlayerPose = null;
+    public string selectedPlayerPose = null;
     private string selectedComputerPose = null;
     private string gameResult = null;
     private int roundsPlayed = 0;
     private int userScore = 0;
 
-    public TMPro.TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
-    public TMPro.TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
-    public TMPro.TextMeshProUGUI gameResultText; // Assign in inspector
-    public TMPro.TextMeshProUGUI roundsPlayedText; // Assign in inspector
-    public TMPro.TextMeshProUGUI userScoreText; // Assign in inspector
+    public TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
+    public TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
+    public TextMeshProUGUI gameResultText; // Assign in inspector
+    public TextMeshProUGUI roundsPlayedText; // Assign in inspector
+    public TextMeshProUGUI userScoreText; // Assign in inspector
 
     public void SelectPose(string selectedPose)
-    {
+    {   
+        selectedPose = selectedPose.ToLower();
         Debug.Log("Selected: " + selectedPose);
         this.selectedPlayerPose = selectedPose;
 
@@ -28,7 +29,7 @@ public class RockPaperScissorsManager : MonoBehaviour
         int randomIndex = new System.Random().Next(0, 3);
 
         // Array of possible poses
-        string[] poses = { "Rock", "Paper", "Scissors" };
+        string[] poses = { "rock", "paper", "scissors" };
 
         // Output the randomly selected pose
         Debug.Log("Selected: " + poses[randomIndex]);
@@ -36,7 +37,7 @@ public class RockPaperScissorsManager : MonoBehaviour
         // Determine the result of the game
         selectedComputerPose = poses[randomIndex];
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
-        gameResultText.text = "Result: " + gameResult;
+        
         Debug.Log("Result: " + gameResult);
 
         // Update rounds played
@@ -56,8 +57,8 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (selectedPlayerPose != null)
-            selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
+        if (selectedPlayerPose != null && selectedPlayerPose != null && gameResult != null)
+            this.selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
         if (selectedComputerPose != null)
             selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
         if (gameResult != null)
@@ -96,9 +97,9 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     private string DetermineWinner(string playerPose, string computerPose)
     {
-        if ((playerPose == "Rock" && computerPose == "Scissors") ||
-            (playerPose == "Paper" && computerPose == "Rock") ||
-            (playerPose == "Scissors" && computerPose == "Paper"))
+        if ((playerPose == "rock" && computerPose == "scissors") ||
+            (playerPose == "paper" && computerPose == "rock") ||
+            (playerPose == "scissors" && computerPose == "paper"))
         {
             return "Player wins!";
         }
