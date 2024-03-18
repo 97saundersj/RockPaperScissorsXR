@@ -19,8 +19,15 @@ public class RockPaperScissorsManager : MonoBehaviour
     public TextMeshProUGUI roundsPlayedText; // Assign in inspector
     public TextMeshProUGUI userScoreText; // Assign in inspector
 
+    public Animator aiAnimator; // Assign in inspector
+
     public void SelectPose(string selectedPose)
-    {   
+    {
+        if (aiAnimator != null)
+        {
+            aiAnimator.SetInteger("selectedPose", 0); // reset pose
+        }
+
         selectedPose = selectedPose.ToLower();
         Debug.Log("Selected: " + selectedPose);
         this.selectedPlayerPose = selectedPose;
@@ -32,22 +39,50 @@ public class RockPaperScissorsManager : MonoBehaviour
         string[] poses = { "rock", "paper", "scissors" };
 
         // Output the randomly selected pose
-        Debug.Log("Selected: " + poses[randomIndex]);
+        Debug.Log("AI Selected: " + poses[randomIndex]);
+
+
+        selectedComputerPose = poses[randomIndex];
+        // Set animation parameter based on AI's pose
+
+        if (aiAnimator != null)
+        {
+            switch (selectedComputerPose)
+            {
+                case "rock":
+                    aiAnimator.SetInteger("selectedPose", 1);
+                    break;
+                case "paper":
+                    aiAnimator.SetInteger("selectedPose", 2);
+                    break;
+                case "scissors":
+                    aiAnimator.SetInteger("selectedPose", 3);
+                    break;
+            }
+        }
+
 
         // Determine the result of the game
-        selectedComputerPose = poses[randomIndex];
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
-        
+
         Debug.Log("Result: " + gameResult);
 
         // Update rounds played
         roundsPlayed++;
 
         // Update user score based on game result
-        if (gameResult == "Player wins!")
+        if (gameResult == "You win!")
         {
             userScore++;
         }
+
+        StartCoroutine(ResetPoseAfterDelay(2f));
+    }
+
+    IEnumerator ResetPoseAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        aiAnimator.SetInteger("selectedPose", 0); // reset pose
     }
 
     void Update()
@@ -58,7 +93,7 @@ public class RockPaperScissorsManager : MonoBehaviour
     void UpdateUI()
     {
         if (selectedPlayerPose != null && selectedPlayerPose != null && gameResult != null)
-            this.selectedPlayerPoseText.text = "You Selected: " + selectedPlayerPose;
+            this.selectedPlayerPoseText.text = "";//"You Selected: " + selectedPlayerPose;
         if (selectedComputerPose != null)
             selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
         if (gameResult != null)
@@ -101,7 +136,7 @@ public class RockPaperScissorsManager : MonoBehaviour
             (playerPose == "paper" && computerPose == "rock") ||
             (playerPose == "scissors" && computerPose == "paper"))
         {
-            return "Player wins!";
+            return "You win!";
         }
         else if (playerPose == computerPose)
         {
@@ -109,7 +144,7 @@ public class RockPaperScissorsManager : MonoBehaviour
         }
         else
         {
-            return "Computer wins!";
+            return "You Lose!";
         }
     }
 }
