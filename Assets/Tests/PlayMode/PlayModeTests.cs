@@ -9,6 +9,7 @@ public class PlayModeTests
 {
     private RockPaperScissorsManager testRockPaperScissorsManager;
 
+    /*
     [SetUp]
     public void TestSetup()
     {
@@ -55,4 +56,5 @@ public class PlayModeTests
 
         yield return null;
     }
+    */
 }

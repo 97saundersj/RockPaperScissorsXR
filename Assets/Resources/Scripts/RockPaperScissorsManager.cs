@@ -5,28 +5,32 @@ using System.Net.WebSockets;
 using UnityEngine;
 using TMPro;
 
+// Refactored RockPaperScissorsManager class
 public class RockPaperScissorsManager : MonoBehaviour
 {
-    public string selectedPlayerPose = null;
+    private string selectedPlayerPose = null;
     private string selectedComputerPose = null;
     private string gameResult = null;
     private int roundsPlayed = 0;
     private int userScore = 0;
 
-    public TextMeshProUGUI selectedPlayerPoseText; // Assign in inspector
-    public TextMeshProUGUI selectedComputerPoseText; // Assign in inspector
-    public TextMeshProUGUI gameResultText; // Assign in inspector
-    public TextMeshProUGUI roundsPlayedText; // Assign in inspector
-    public TextMeshProUGUI userScoreText; // Assign in inspector
+    public TextMeshProUGUI gameStartText;
 
-    public Animator aiAnimator; // Assign in inspector
+    public TextMeshProUGUI gameResultText;
+    public TextMeshProUGUI roundsPlayedText;
+    public TextMeshProUGUI userScoreText;
+
+    public Animator aiAnimator;
 
     public void SelectPose(string selectedPose)
     {
+        gameStartText.text = "";
         SetPlayerPose(selectedPose);
         SetComputerPose();
         DetermineGameResult();
         UpdateScoreAndRounds();
+        UpdateUI();
+
         StartCoroutine(ResetPoseAfterDelay(2f));
     }
 
@@ -39,49 +43,26 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     private void SetComputerPose()
     {
-        // Generate a random number between 0 and 2
         int randomIndex = new System.Random().Next(0, 3);
-
-        // Array of possible poses
         string[] poses = { "rock", "paper", "scissors" };
-
-        // Output the randomly selected pose
         Debug.Log("AI Selected: " + poses[randomIndex]);
-
         selectedComputerPose = poses[randomIndex];
-        // Set animation parameter based on AI's pose
 
         if (aiAnimator != null)
         {
-            switch (selectedComputerPose)
-            {
-                case "rock":
-                    aiAnimator.SetInteger("selectedPose", 1);
-                    break;
-                case "paper":
-                    aiAnimator.SetInteger("selectedPose", 2);
-                    break;
-                case "scissors":
-                    aiAnimator.SetInteger("selectedPose", 3);
-                    break;
-            }
+            aiAnimator.SetInteger("selectedPose", Array.IndexOf(poses, selectedComputerPose) + 1);
         }
     }
 
     private void DetermineGameResult()
     {
-        // Determine the result of the game
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
-
         Debug.Log("Result: " + gameResult);
     }
 
     private void UpdateScoreAndRounds()
     {
-        // Update rounds played
         roundsPlayed++;
-
-        // Update user score based on game result
         if (gameResult == "You win!")
         {
             userScore++;
@@ -91,24 +72,15 @@ public class RockPaperScissorsManager : MonoBehaviour
     IEnumerator ResetPoseAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        aiAnimator.SetInteger("selectedPose", 0); // reset pose
-    }
-
-    void Update()
-    {
-        UpdateUI();
+        aiAnimator.SetInteger("selectedPose", 0);
     }
 
     void UpdateUI()
     {
-        if (selectedPlayerPose != null && selectedPlayerPose != null && gameResult != null)
-            this.selectedPlayerPoseText.text = "";//"You Selected: " + selectedPlayerPose;
-        if (selectedComputerPose != null)
-            selectedComputerPoseText.text = "AI Selected: " + selectedComputerPose;
         if (gameResult != null)
+        {
             gameResultText.text = gameResult;
-        //roundsPlayedText.text = "Rounds Played: " + roundsPlayed;
-        //userScoreText.text = "User Score: " + userScore;
+        }
     }
 
     void OnGUI()
@@ -125,7 +97,6 @@ public class RockPaperScissorsManager : MonoBehaviour
 
         if (GUI.Button(new Rect(10, 130, 100, 50), "Scissors"))
         {
-            Console.WriteLine("Selected: Scissors");
             SelectPose("Scissors");
         }
 
