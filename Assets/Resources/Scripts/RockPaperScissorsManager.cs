@@ -23,15 +23,22 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     public void SelectPose(string selectedPose)
     {
-        if (aiAnimator != null)
-        {
-            aiAnimator.SetInteger("selectedPose", 0); // reset pose
-        }
+        SetPlayerPose(selectedPose);
+        SetComputerPose();
+        DetermineGameResult();
+        UpdateScoreAndRounds();
+        StartCoroutine(ResetPoseAfterDelay(2f));
+    }
 
+    private void SetPlayerPose(string selectedPose)
+    {
         selectedPose = selectedPose.ToLower();
         Debug.Log("Selected: " + selectedPose);
         this.selectedPlayerPose = selectedPose;
+    }
 
+    private void SetComputerPose()
+    {
         // Generate a random number between 0 and 2
         int randomIndex = new System.Random().Next(0, 3);
 
@@ -40,7 +47,6 @@ public class RockPaperScissorsManager : MonoBehaviour
 
         // Output the randomly selected pose
         Debug.Log("AI Selected: " + poses[randomIndex]);
-
 
         selectedComputerPose = poses[randomIndex];
         // Set animation parameter based on AI's pose
@@ -60,13 +66,18 @@ public class RockPaperScissorsManager : MonoBehaviour
                     break;
             }
         }
+    }
 
-
+    private void DetermineGameResult()
+    {
         // Determine the result of the game
         gameResult = DetermineWinner(selectedPlayerPose, selectedComputerPose);
 
         Debug.Log("Result: " + gameResult);
+    }
 
+    private void UpdateScoreAndRounds()
+    {
         // Update rounds played
         roundsPlayed++;
 
@@ -75,8 +86,6 @@ public class RockPaperScissorsManager : MonoBehaviour
         {
             userScore++;
         }
-
-        StartCoroutine(ResetPoseAfterDelay(2f));
     }
 
     IEnumerator ResetPoseAfterDelay(float delay)
