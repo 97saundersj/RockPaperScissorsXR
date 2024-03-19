@@ -8,11 +8,18 @@ using TMPro;
 // Refactored RockPaperScissorsManager class
 public class RockPaperScissorsManager : MonoBehaviour
 {
-    private string selectedPlayerPose = null;
-    private string selectedComputerPose = null;
-    private string gameResult = null;
-    private int roundsPlayed = 0;
-    private int userScore = 0;
+    public enum Pose
+    {
+        Rock,
+        Paper,
+        Scissors
+    }
+
+    public string selectedPlayerPose = null;
+    public string selectedComputerPose = null;
+    public string gameResult = null;
+    public int roundsPlayed = 0;
+    public int userScore = 0;
 
     public TextMeshProUGUI gameStartText;
 
@@ -22,10 +29,25 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     public Animator aiAnimator;
 
-    public void SelectPose(string selectedPose)
+    public void SelectRock()
+    {
+        SelectPose(Pose.Rock);
+    }
+
+    public void SelectPaper()
+    {
+        SelectPose(Pose.Paper);
+    }
+
+    public void SelectScissors()
+    {
+        SelectPose(Pose.Scissors);
+    }
+
+    private void SelectPose(Pose selectedPose)
     {
         gameStartText.text = "";
-        SetPlayerPose(selectedPose);
+        SetPlayerPose(selectedPose.ToString());
         SetComputerPose();
         DetermineGameResult();
         UpdateScoreAndRounds();
@@ -80,33 +102,6 @@ public class RockPaperScissorsManager : MonoBehaviour
         if (gameResult != null)
         {
             gameResultText.text = gameResult;
-        }
-    }
-
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 50), "Rock"))
-        {
-            SelectPose("Rock");
-        }
-
-        if (GUI.Button(new Rect(10, 70, 100, 50), "Paper"))
-        {
-            SelectPose("Paper");
-        }
-
-        if (GUI.Button(new Rect(10, 130, 100, 50), "Scissors"))
-        {
-            SelectPose("Scissors");
-        }
-
-        GUI.Label(new Rect(10, 190, 200, 50), "AI Selected: " + selectedComputerPose);
-
-        if (gameResult != null)
-        {
-            GUI.Label(new Rect(10, 290, 200, 50), "Rounds Played: " + roundsPlayed);
-            GUI.Label(new Rect(10, 330, 200, 50), "User Score: " + userScore);
-            GUI.Label(new Rect(10, 370, 200, 50), gameResult);
         }
     }
 

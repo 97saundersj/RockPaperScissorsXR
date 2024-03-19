@@ -386,6 +386,51 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &222459007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222459008}
+  - component: {fileID: 222459009}
+  m_Layer: 0
+  m_Name: DebugUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &222459008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222459007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020074079}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &222459009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222459007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ff67cff0a677244a5e5db4c1f6ba02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPaperScissorsManager: {fileID: 0}
 --- !u!4 &432135060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 459718, guid: 126d619cf4daa52469682f85c1378b4a,
@@ -1111,7 +1156,7 @@ Transform:
   - {fileID: 2305143915288650833}
   - {fileID: 1067719920}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913719847
 GameObject:
@@ -1298,6 +1343,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd9780be7e512049b4d33d5c9d0ac92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1020074078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020074079}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020074079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020074078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1101878442}
+  - {fileID: 222459008}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1067719920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2875268522287397597, guid: 5f611a36d70d46a4ba7f1233f9c4444e,
@@ -1334,8 +1412,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPlayerPose: 
-  selectedPlayerPoseText: {fileID: 141983922}
-  selectedComputerPoseText: {fileID: 0}
+  selectedComputerPose: 
+  gameResult: 
+  roundsPlayed: 0
+  userScore: 0
+  gameStartText: {fileID: 141983922}
   gameResultText: {fileID: 913719848}
   roundsPlayedText: {fileID: 0}
   userScoreText: {fileID: 0}
@@ -1347,13 +1428,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101878440}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1020074079}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1240343838 stripped
 MonoBehaviour:
@@ -1701,7 +1782,7 @@ PrefabInstance:
     - target: {fileID: 2064165941358195720, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2064165941358195720, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -1841,7 +1922,7 @@ PrefabInstance:
     - target: {fileID: 2338690245856707732, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2338690245856707733, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2311,7 +2392,7 @@ PrefabInstance:
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2326,17 +2407,17 @@ PrefabInstance:
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SelectPose
+      value: SelectRock
       objectReference: {fileID: 0}
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RockPaperScissorsManager, Assembly-CSharp
+      value: RockPaperScissorsManager, NewAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: rock
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7408246161406225218, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2361,7 +2442,7 @@ PrefabInstance:
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2386,7 +2467,7 @@ PrefabInstance:
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SelectPose
+      value: SelectPaper
       objectReference: {fileID: 0}
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2396,7 +2477,7 @@ PrefabInstance:
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RockPaperScissorsManager, Assembly-CSharp
+      value: RockPaperScissorsManager, NewAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 7824124705951293978, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2413,6 +2494,26 @@ PrefabInstance:
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8334117764940597075, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334117764940597075, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334117764940597075, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334117764940597075, guid: 48779c4e9105c1d4c986f52958bba9a3,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Oculus.Interaction.AudioTrigger, Oculus.Interaction.Samples
+      objectReference: {fileID: 0}
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.size
@@ -2421,7 +2522,7 @@ PrefabInstance:
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -2436,12 +2537,12 @@ PrefabInstance:
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SelectPose
+      value: SelectScissors
       objectReference: {fileID: 0}
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
       propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RockPaperScissorsManager, Assembly-CSharp
+      value: RockPaperScissorsManager, NewAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8678877963811370165, guid: 48779c4e9105c1d4c986f52958bba9a3,
         type: 3}
@@ -3245,7 +3346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
