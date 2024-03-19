@@ -3,35 +3,45 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEditor;
 using TMPro;
 
 public class PlayModeTests
 {
     private RockPaperScissorsManager testRockPaperScissorsManager;
 
-    /*
     [SetUp]
     public void TestSetup()
     {
         var testRockPaperScissorsManagerGameObject = new GameObject();
         testRockPaperScissorsManager = testRockPaperScissorsManagerGameObject.AddComponent<RockPaperScissorsManager>();
 
-        // Create new GameObjects with TextMeshProUGUI components
-        var playerPoseTextObject = new GameObject();
-        testRockPaperScissorsManager.selectedPlayerPoseText = playerPoseTextObject.AddComponent<TextMeshProUGUI>();
+        string[] searchResults = AssetDatabase.FindAssets("AI Hand Prefab");
+        string prefabPath = AssetDatabase.GUIDToAssetPath(searchResults[0]);
+        var aiHandPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        GameObject aiHandGameObject = GameObject.Instantiate(aiHandPrefab);
 
-        var computerPoseTextObject = new GameObject();
-        testRockPaperScissorsManager.selectedComputerPoseText = computerPoseTextObject.AddComponent<TextMeshProUGUI>();
+        foreach (var textUI in aiHandGameObject.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            Debug.Log(textUI.name);
 
-        var gameResultTextObject = new GameObject();
-        testRockPaperScissorsManager.gameResultText = gameResultTextObject.AddComponent<TextMeshProUGUI>();
+            switch(textUI.name)
+            {
+                case "Game Start Text":
+                    testRockPaperScissorsManager.gameStartText = textUI;
+                    break;
+                case "Game Result Text":
+                    testRockPaperScissorsManager.gameResultText = textUI;
+                    break;
+            }
+        }
     }
 
     [UnityTest]
     public IEnumerator SelectRockTest()
     {
         TestSetup();
-        testRockPaperScissorsManager.SelectPose("rock");
+        testRockPaperScissorsManager.SelectRock();
         Assert.AreEqual("rock", testRockPaperScissorsManager.selectedPlayerPose);
 
         yield return null;
@@ -41,7 +51,7 @@ public class PlayModeTests
     public IEnumerator SelectPaperTest()
     {
         TestSetup();
-        testRockPaperScissorsManager.SelectPose("paper");
+        testRockPaperScissorsManager.SelectPaper();
         Assert.AreEqual("paper", testRockPaperScissorsManager.selectedPlayerPose);
 
         yield return null;
@@ -51,10 +61,9 @@ public class PlayModeTests
     public IEnumerator SelectScissorsTest()
     {
         TestSetup();
-        testRockPaperScissorsManager.SelectPose("scissors");
+        testRockPaperScissorsManager.SelectScissors();
         Assert.AreEqual("scissors", testRockPaperScissorsManager.selectedPlayerPose);
 
         yield return null;
     }
-    */
 }
