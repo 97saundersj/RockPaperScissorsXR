@@ -140,6 +140,7 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: 11400000, guid: 98fabcbcca0886f45ad5205e84216e81, type: 2}
+  - {fileID: 11400000, guid: 42e6ec29baffb1c43bae2fa76a2cc433, type: 2}
   - {fileID: 11400000, guid: 8c0030b4b5984e7439a553df0cdd7dd2, type: 2}
   - {fileID: -2547559607972768095, guid: abe5d4c6390c70b438750d3c82121457, type: 2}
   metroInputSource: 0
@@ -167,7 +168,7 @@ PlayerSettings:
     Standalone: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
+  overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 29
   AndroidTargetSdkVersion: 31
@@ -273,7 +274,7 @@ PlayerSettings:
   chromeosInputEmulation: 1
   AndroidMinifyWithR8: 0
   AndroidMinifyRelease: 0
-  AndroidMinifyDebug: 0
+  AndroidMinifyDebug: 1
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
   m_BuildTargetIcons:
