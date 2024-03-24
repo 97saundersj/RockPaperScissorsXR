@@ -15,7 +15,7 @@ public class CountdownTimer : MonoBehaviour
 
     // Flag to control the countdown
     [SerializeField, Tooltip("Enable or disable the countdown.")]
-    private bool countdownOn = false;
+    public bool countdownOn = false;
 
     // Array of callbacks to be invoked at each step of the countdown
     [SerializeField, Tooltip("The callbacks to be invoked at each step of the countdown.")]

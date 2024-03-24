@@ -13,12 +13,6 @@ public class RockPaperScissorsManager : MonoBehaviour
         Scissors
     }
 
-    public string selectedPlayerPose = null;
-    public string selectedComputerPose = null;
-    public string gameResult = null;
-    public int roundsPlayed = 0;
-    public int userScore = 0;
-
     public TextMeshProUGUI gameStartText;
 
     public TextMeshProUGUI gameResultText;
@@ -26,6 +20,71 @@ public class RockPaperScissorsManager : MonoBehaviour
     public TextMeshProUGUI userScoreText;
 
     public Animator aiAnimator;
+
+    public GameObject particleGameObject = null;
+
+    public CountdownTimer roundCountDownTimer = null;
+
+    [HideInInspector]
+    public string selectedPlayerPose = null;
+
+    [HideInInspector]
+    public string selectedComputerPose = null;
+
+    [HideInInspector]
+    public string gameResult = null;
+
+    [HideInInspector]
+    public int roundsPlayed = 0;
+
+    [HideInInspector]
+    public int userScore = 0;
+
+    [HideInInspector]
+    public bool roundStarted = false;
+
+    public void NewRound()
+    {
+        gameResultText.text = "";
+
+        // Disable Particle Effects from poses until we are ready
+        particleGameObject.SetActive(false);
+        roundCountDownTimer.StartCountDown();
+    }
+
+    public void RoundStart()
+    {
+        roundStarted = true;
+
+        // Enable Particle Effects from poses
+        particleGameObject.SetActive(false);
+        StartCoroutine(WaitForPlayerInput(1));
+    }
+
+    IEnumerator WaitForPlayerInput(float waitTime)
+    {
+        if (selectedPlayerPose != null)
+        {
+            gameStartText.text = null;
+
+            
+            gameStartText.text = "";
+            SetComputerPose();
+            DetermineGameResult();
+            UpdateScoreAndRounds();
+            ResetPoses();
+            UpdateUI();
+
+            roundStarted = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(waitTime);
+            // Wait a second before checking user input
+            gameStartText.text = "Waiting...";
+            StartCoroutine(WaitForPlayerInput(0.5f));
+        }
+    }
 
     public void SelectRock()
     {
@@ -44,14 +103,11 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     private void SelectPose(Pose selectedPose)
     {
-        gameStartText.text = "";
-        SetPlayerPose(selectedPose.ToString());
-        SetComputerPose();
-        DetermineGameResult();
-        UpdateScoreAndRounds();
-        UpdateUI();
-
-        StartCoroutine(ResetPoseAfterDelay(2f));
+        // Only allow player to select a pose once the game has started
+        if (roundStarted)
+        {
+            SetPlayerPose(selectedPose.ToString());
+        }
     }
 
     private void SetPlayerPose(string selectedPose)
@@ -72,6 +128,9 @@ public class RockPaperScissorsManager : MonoBehaviour
         {
             aiAnimator.SetInteger("selectedPose", Array.IndexOf(poses, selectedComputerPose) + 1);
         }
+
+        // Reset AI Pose
+        StartCoroutine(ResetPoseAfterDelay(2f));
     }
 
     private void DetermineGameResult()
@@ -87,6 +146,12 @@ public class RockPaperScissorsManager : MonoBehaviour
         {
             userScore++;
         }
+    }
+
+    private void ResetPoses()
+    {
+        selectedPlayerPose = null;
+        selectedComputerPose = null;
     }
 
     IEnumerator ResetPoseAfterDelay(float delay)

@@ -6,22 +6,28 @@ public class DebugUIManager : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 100, 50), "Rock"))
+        if (GUI.Button(new Rect(10, 10, 100, 50), "New Round"))
+        {
+            rockPaperScissorsManager.NewRound();
+        }
+
+        if (GUI.Button(new Rect(10, 100, 100, 50), "Rock"))
         {
             rockPaperScissorsManager.SelectRock();
         }
 
-        if (GUI.Button(new Rect(10, 70, 100, 50), "Paper"))
+        if (GUI.Button(new Rect(150, 100, 100, 50), "Paper"))
         {
             rockPaperScissorsManager.SelectPaper();
         }
 
-        if (GUI.Button(new Rect(10, 130, 100, 50), "Scissors"))
+        if (GUI.Button(new Rect(300, 100, 100, 50), "Scissors"))
         {
             rockPaperScissorsManager.SelectScissors();
         }
 
         GUI.Label(new Rect(10, 190, 200, 50), "AI Selected: " + rockPaperScissorsManager.selectedComputerPose);
+        GUI.Label(new Rect(300, 190, 200, 50), "Player Selected: " + rockPaperScissorsManager.selectedPlayerPose);
 
         if (rockPaperScissorsManager.gameResult != null)
         {
