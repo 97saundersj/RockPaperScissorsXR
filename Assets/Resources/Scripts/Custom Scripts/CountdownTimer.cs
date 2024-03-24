@@ -1,83 +1,76 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
-using UnityEngine;
-using UnityEditor;
+using System.Collections;
 
 /// <summary>
-/// Performs a callback after a countdown timer has elapsed.
+/// Performs a callback after each step in a countdown.
 /// The countdown can be enabled or disabled externally.
 /// </summary>
 public class CountdownTimer : MonoBehaviour
 {
-    [SerializeField, Min(0)]
+    // Countdown time in seconds
+    [SerializeField, Min(0), Tooltip("The total time for the countdown in seconds.")]
     private float _countdownTime = 1.0f;
 
-    [SerializeField]
+    // Flag to control the countdown
+    [SerializeField, Tooltip("Enable or disable the countdown.")]
     private bool countdownOn = false;
 
-    [SerializeField]
-    private UnityEvent _callback;
-
-    [SerializeField]
+    // Array of callbacks to be invoked at each step of the countdown
+    [SerializeField, Tooltip("The callbacks to be invoked at each step of the countdown.")]
     private UnityEvent[] _progressCallbacks;
 
-    private float _countdownTimer;
+    // Time per interval calculated based on the countdown time and the number of callbacks
+    private float timePerInterval = 0f;
 
-    public bool CountdownOn
-    {
-        get => countdownOn;
+    // Current step number in the countdown
+    private int currentStepNumber = 0;
 
-        set
-        {
-            Debug.Log("Start Value: " + value);
-
-            if (value)
-            {
-                countdownOn = value;
-                _countdownTimer = _countdownTime;
-                Debug.Log("Starting Countdown for: " + _countdownTimer + "s");
-
-            }
-        }
-    }
-
-    // is called by Unity when ever a value in the inspector is changed
-    private void OnValidate()
-    {
-        CountdownOn = countdownOn;
-    }
-
+    // Awake is called when the script instance is being loaded
     private void Awake()
     {
         Assert.IsTrue(_countdownTime >= 0, "Countdown Time must be positive.");
     }
 
-    private void Update()
+    // OnValidate is called by Unity whenever a value in the inspector is changed
+    private void OnValidate()
     {
-        if (!countdownOn || _countdownTimer < 0)
+        if (countdownOn)
         {
-            return;
+            StartCountDown();
         }
+    }
 
-        _countdownTimer -= Time.deltaTime;
+    /// <summary>
+    /// Starts the countdown.
+    /// </summary>
+    public void StartCountDown()
+    {
+        countdownOn = true;
+        currentStepNumber = 0;
+        timePerInterval = _countdownTime / (_progressCallbacks.Length - 1);
+        Debug.Log("Starting Countdown for: " + _countdownTime + "s");
+        StartCoroutine(RunTimeInterval());
+    }
 
-        if (_countdownTimer > 0f)
+    /// <summary>
+    /// Coroutine to run the time interval.
+    /// </summary>
+    IEnumerator RunTimeInterval()
+    {
+        if (currentStepNumber < _progressCallbacks.Length)
         {
-            var timePerInterval = _countdownTime / (_progressCallbacks.Length - 1);
-            var currentIndex = Mathf.RoundToInt(_countdownTimer * timePerInterval);
-
-            Debug.Log("current index " + currentIndex);
-            _progressCallbacks[currentIndex].Invoke();
+            Debug.Log("Invoking element " + currentStepNumber);
+            _progressCallbacks[currentStepNumber].Invoke();
+            currentStepNumber++;
+            yield return new WaitForSeconds(timePerInterval);
+            StartCoroutine(RunTimeInterval());
         }
-
-        if (_countdownTimer < 0f)
+        else
         {
-            Debug.Log("Finished");
-            _countdownTimer = -1f;
-            _callback.Invoke();
+            Debug.Log("Timer Finished");
             countdownOn = false;
-            return;
         }
     }
 }
