@@ -23,6 +23,10 @@ public class RockPaperScissorsManager : MonoBehaviour
 
     public GameObject particleGameObject = null;
 
+    public GameObject aiHand = null;
+
+    public GameObject aiCloud = null;
+
     public CountdownTimer roundCountDownTimer = null;
 
     [HideInInspector]
@@ -49,6 +53,9 @@ public class RockPaperScissorsManager : MonoBehaviour
 
         // Disable Particle Effects from poses until we are ready
         particleGameObject.SetActive(false);
+
+        // Show the cloud for the AI
+        aiCloud.SetActive(true);
         roundCountDownTimer.StartCountDown();
     }
 
@@ -58,6 +65,9 @@ public class RockPaperScissorsManager : MonoBehaviour
 
         // Enable Particle Effects from poses
         particleGameObject.SetActive(false);
+        
+        
+
         StartCoroutine(WaitForPlayerInput(1));
     }
 
@@ -65,11 +75,11 @@ public class RockPaperScissorsManager : MonoBehaviour
     {
         if (selectedPlayerPose != null)
         {
-            gameStartText.text = null;
-
-            
             gameStartText.text = "";
+
+            // All players have made their choices so Set Pose and hide cloud
             SetComputerPose();
+            aiCloud.SetActive(false);
             DetermineGameResult();
             UpdateScoreAndRounds();
             ResetPoses();
