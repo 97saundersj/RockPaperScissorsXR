@@ -1,4 +1,3 @@
-# https://game.ci/docs/github/getting-started
 name: Unity Test & Build Action
 
 on:
@@ -30,6 +29,13 @@ jobs:
           restore-keys: |
             Library-
             
+      # Debugging: Print secrets (DO NOT use in production)
+      - name: Debug secrets
+        run: |
+          echo "UNITY_LICENSE: $(echo "${{ secrets.UNITY_LICENSE }}" | sed 's/./& /g')"
+          echo "UNITY_EMAIL: $(echo "${{ secrets.UNITY_EMAIL }}" | sed 's/./& /g')"
+          echo "UNITY_PASSWORD: $(echo "${{ secrets.UNITY_PASSWORD }}" | sed 's/./& /g')"
+
       # Test
       - name: Run tests
         uses: game-ci/unity-test-runner@v4
@@ -59,6 +65,13 @@ jobs:
           restore-keys: |
             Library-
             
+      # Debugging: Print secrets (DO NOT use in production)
+      - name: Debug secrets
+        run: |
+          echo "UNITY_LICENSE: $(echo "${{ secrets.UNITY_LICENSE }}" | sed 's/./& /g')"
+          echo "UNITY_EMAIL: $(echo "${{ secrets.UNITY_EMAIL }}" | sed 's/./& /g')"
+          echo "UNITY_PASSWORD: $(echo "${{ secrets.UNITY_PASSWORD }}" | sed 's/./& /g')"
+
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
